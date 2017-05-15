@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { Platform } from 'ionic-angular';
-import { FingerprintAIO, FingerprintOptions} from '@ionic-native/fingerprint-aio';
+import { NavController, NavParams } from 'ionic-angular';
+import { Login } from '../login/login';
 
 @Component({
   selector: 'page-home',
@@ -8,27 +8,11 @@ import { FingerprintAIO, FingerprintOptions} from '@ionic-native/fingerprint-aio
 })
 export class HomePage {
 
-  fingerprintOptions: FingerprintOptions;
+  constructor(private navCtrl: NavController, private navParams: NavParams) {}
 
-  constructor(private fingerprint: FingerprintAIO, private platform: Platform) {
-    this.fingerprintOptions = {
-      clientId: 'fingerprint-demo',
-      clientSecret: 'password',
-      disableBackup: true
-    }
-  }
-
-  async showFingerprintDialog(){
-    try{
-      await this.platform.ready();
-      const available = await this.fingerprint.isAvailable();
-      if(available === 'OK'){
-        const result =  this.fingerprint.show(this.fingerprintOptions);
-        console.log(result);
-      }
-    }catch(e){
-      console.error(e);
-    }
+  removeFingerprintData(){
+    window.localStorage.removeItem('fingerprint');
+    this.navCtrl.setRoot(Login);
   }
 
 }

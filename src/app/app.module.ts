@@ -7,11 +7,13 @@ import { FingerprintAIO} from '@ionic-native/fingerprint-aio';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
+import { Login } from '../pages/login/login';
 
 @NgModule({
   declarations: [
     MyApp,
-    HomePage
+    HomePage,
+    Login
   ],
   imports: [
     BrowserModule,
@@ -20,7 +22,8 @@ import { HomePage } from '../pages/home/home';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    HomePage
+    HomePage,
+    Login
   ],
   providers: [
     StatusBar,
